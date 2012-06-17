@@ -8,30 +8,30 @@ import org.junit.Test;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.path.json.JsonPath;
 
-public class DoctorTest {
+public class PatientTest {
 
-	private static final String URL = "http://opmfrontend3.cloudfoundry.com/doctor/";
+	private static final String URL = "http://opmfrontend3.cloudfoundry.com/patient/";
 	
 	@Test
 	public void get() {
-		expect().body(containsString("doctors")).when().get(URL +"index");
+		expect().body(containsString("patients")).when().get(URL +"index");
 	}
 	
 	@Test
 	public void post() {
-		String message = "{\"name\":\"Dr. Hochweiß\"}";
+		String message = "{\"firstName\":\"Franz\",\"lastName\":\"Meier\",\"gender\":true,\"location\":[1,1]}";
 		expect().statusCode(200).given().contentType("application/json; charset=UTF-8").body(message).when().post(URL +"index");
 	}
 
 	@Test
 	public void delete() {
 		// add
-		String message = "{\"name\":\"Dr. Gott\"}";
+		String message = "{\"firstName\":\"Maria\",\"lastName\":\"Müller\",\"gender\":false,\"location\":[2,2]}";
 		expect().statusCode(200).given().contentType("application/json; charset=UTF-8").body(message).when().post(URL +"index");
 		
 		// get an id
 		String json = RestAssured.get(URL +"index").asString();
-		String id = JsonPath.from(json).getString("doctors[0].id");
+		String id = JsonPath.from(json).getString("patients[0].id");
 		
 		// delete
 		expect().statusCode(200).when().delete(URL + id);
@@ -40,14 +40,15 @@ public class DoctorTest {
 	@Test
 	public void getSingle() {
 		// add
-		String message = "{\"name\":\"Dr. Aufmesser\"}";
+		String message = "{\"firstName\":\"Martin\",\"lastName\":\"Moser\",\"gender\":true,\"location\":[3,3]}";
 		expect().statusCode(200).given().contentType("application/json; charset=UTF-8").body(message).when().post(URL +"index");
 		
 		// get an id
 		String json = RestAssured.get(URL +"index").asString();
-		String id = JsonPath.from(json).getString("doctors[0].id");
+		String id = JsonPath.from(json).getString("patients[0].id");
 		
 		// delete
 		expect().statusCode(200).when().get(URL + id);
 	}
+
 }
