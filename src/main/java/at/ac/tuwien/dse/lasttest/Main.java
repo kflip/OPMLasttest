@@ -1,4 +1,4 @@
-package at.ac.tuwien.des.lasttest;
+package at.ac.tuwien.dse.lasttest;
 
 import com.clarkware.junitperf.LoadTest;
 import com.clarkware.junitperf.TimedTest;

@@ -1,4 +1,4 @@
-package at.ac.tuwien.des.lasttest;
+package at.ac.tuwien.dse.lasttest;
 
 
 import static org.junit.Assert.*;
