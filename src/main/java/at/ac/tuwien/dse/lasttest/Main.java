@@ -17,9 +17,9 @@ public class Main {
 	
 	public static Test startTest()
 	{
-		int userCount = 100;
-		long maxTimeInMillis = 2000;
-		Test test = new PublicUserTest("ListAllHospitalsTestCase");
+		int userCount = 100;				// Bei 100 Usern wurden im Testlauf 98 in der entsprechenden Zeit fertig
+		long maxTimeInMillis = 14000; 		// 7 Testaufrufe mit 1 Sekunde Pause dazwischen.
+		Test test = new PublicUserTest("TestCase1");
 		Test timedTest = new TimedTest(test, maxTimeInMillis);
 		Test loadTest = new LoadTest(timedTest, userCount);
 		return loadTest;

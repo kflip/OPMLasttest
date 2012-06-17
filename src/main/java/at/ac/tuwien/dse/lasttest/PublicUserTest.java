@@ -16,29 +16,51 @@ public class PublicUserTest extends TestCase
 	{
 		super(name);
 	}
+	
+	@Test
+	public void TestCase1()
+	{
+		try 
+		{
+			ListAllHospitalsTestCase();
+			Thread.sleep(1000);
+			ListAllOpSlots();
+			Thread.sleep(1000);
+			for(int i = 0; i < 5; i++)
+			{
+				ListAllNotifications();
+				Thread.sleep(1000);
+			}
+			
+		} 
+		catch (InterruptedException e) 
+		{
+			
+		}
+	}
 
 	@Test
 	public void ListAllHospitalsTestCase() 
 	{
-		com.jayway.restassured.RestAssured.expect().log().all().when().get("http://opmfrontend21.cloudfoundry.com/hospital/index/");
+		com.jayway.restassured.RestAssured.expect().when().get("http://opmfrontend21.cloudfoundry.com/hospital/index/");
 	}
 	
 	@Test
 	public void ListAllOpSlots()
 	{
-		com.jayway.restassured.RestAssured.expect().log().all().when().get("http://opmfrontend21.cloudfoundry.com/opslot/index/");
+		com.jayway.restassured.RestAssured.expect().when().get("http://opmfrontend21.cloudfoundry.com/opslot/index/");
 	}
 
 	@Test
 	public void ListAllDoctors()
 	{
-		com.jayway.restassured.RestAssured.expect().log().all().when().get("http://opmfrontend21.cloudfoundry.com/doctor/index/");
+		com.jayway.restassured.RestAssured.expect().when().get("http://opmfrontend21.cloudfoundry.com/doctor/index/");
 	}
 	
 	@Test
 	public void ListAllNotifications()
 	{
-		com.jayway.restassured.RestAssured.expect().log().all().when().get("http://opmfrontend21.cloudfoundry.com/notification/index/");
+		com.jayway.restassured.RestAssured.expect().when().get("http://opmfrontend21.cloudfoundry.com/notification/index/");
 	}
 	
 	@Test
